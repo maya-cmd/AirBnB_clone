@@ -24,8 +24,14 @@ The following classes are used for AirBnB:
 
 	-Place class
 ## Commands Used
-	-create
-
+	
+	-create CLASS - Create a new class instance
+	-destroy CLASS ID - Destroy a specified instance based on a given id
+	-show CLASS ID - Outputs a string representation of a class instance
+	-all [CLASS] - Outputs string representation of all instances of a given class
+	-help - Assists in getting information about a command.
+	-update CLASS ID ATTRIBUTE VALUE - Edit attributes of an instance.
+	-quit - Close an interactive session. Also quit with ^-D or EOF.
 ## AirBnB console
 The hBnB console can be run both interactively and non-interactively.
 
