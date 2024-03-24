@@ -35,7 +35,7 @@ def parse(argument):
 class HBNBCommand(cmd.Cmd):
     """HBNB command interpreter class."""
 
-    prompt = "(hbnb)
+    prompt = "(hbnb) "
     __classes = {
         "BaseModel",
         "User",
@@ -44,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
         "Place",
         "Amenity",
         "Review"
-    }"
+    }
 
     def do_quit(self, arg):
         """Quit the command interpreter."""
@@ -103,17 +103,18 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(cli_args) == 1:
             print("** instance id missing **")
-        elif "{}.{}".format cli_arg[0], cli_args[1]) not in objdict.keys():
+        elif "{}.{}".format(cli_arg[0], cli_args[1]) not in objdict.keys():
             print("** no instance found **")
         else:
-            del objdict["{}.{}".format cli_args[0], cli_args[1])]
+            del objdict["{}.{}".format(cli_args[0], cli_args[1])]
             storage.save()
 
     def do_all(self, argument):
-            """Outputs the string representation of all instances
-            based or not on the class name
-            """
-        cli_args=parse(argument)
+        """
+        Outputs the string representation of all instances
+        based or not on the class name
+        """
+        cli_args = parse(argument)
         if len(cli_args) > 0 and cli_args[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
@@ -126,9 +127,9 @@ class HBNBCommand(cmd.Cmd):
             print(objl)
 
     def do_count(self, argument):
-    """
-    Gets the number of instances of a given class.
-    """
+        """
+        Gets the number of instances of a given class.
+        """
         cli_args = parse(argument)
         count = 0
         for obj in storage.all().values():
@@ -150,7 +151,7 @@ class HBNBCommand(cmd.Cmd):
         if len(cli_args) == 1:
             print("** instance id missing **")
             return False
-        if "{}.{}".format cli_args[0], cli_args[1]) not in objdict.keys():
+        if "{}.{}".format(cli_args[0], cli_args[1]) not in objdict.keys():
             print("** no instance found **")
             return False
         if len(cli_args) == 2:
@@ -158,21 +159,21 @@ class HBNBCommand(cmd.Cmd):
             return False
         if len(cli_args) == 3:
             try:
-                type(eval cli_args[2])) != dict
+                type(eval (cli_args[2])) != dict
             except NameError:
                 print("** value missing **")
                 return False
 
         if len(cli_args) == 4:
-            obj = objdict["{}.{}".format cli_args[0], cli_args[1])]
+            obj = objdict["{}.{}".format(cli_args[0], cli_args[1])]
             if cli_args[2] in obj.__class__.__dict__.keys():
-                valtype = type(obj.__class__.__dict__ cli_args[2]])
-                obj.__dict__ cli_args[2]] = valtype cli_args[3])
+                valtype = type(obj.__class__.__dict__ [cli_args[2]])
+                obj.__dict__ [cli_args[2]] = valtype (cli_args[3])
             else:
-                obj.__dict__ cli_args[2]] = cli_args[3]
-        elif type(eval cli_arg[2])) == dict:
-            obj = objdict["{}.{}".format cli_args[0], cli_args[1])]
-            for k, v in eval cli_args[2]).items():
+                obj.__dict__ [cli_args[2]] = cli_args[3]
+        elif type(eval (cli_arg[2])) == dict:
+            obj = objdict["{}.{}".format(cli_args[0], cli_args[1])]
+            for k, v in eval (cli_args[2]).items():
                 if (k in obj.__class__.__dict__.keys() and
                         type(obj.__class__.__dict__[k]) in {str, int, float}):
                     valtype = type(obj.__class__.__dict__[k])
