@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""DefinestheBaseModelclass by victor."""
+"""DefinestheBaseModelclass"""
 import models
 from uuid import uuid4
 from datetime import datetime
