@@ -13,6 +13,7 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 
+
 def parse(argument):
     curly_braces = re.search(r"\{(.*?)\}", argument)
     brackets = re.search(r"\[(.*?)\]", argument)
@@ -34,8 +35,7 @@ def parse(argument):
 class HBNBCommand(cmd.Cmd):
     """HBNB command interpreter class."""
 
-    prompt = "(hbnb) 
-     prompt = "(hbnb) "
+    prompt = "(hbnb)
     __classes = {
         "BaseModel",
         "User",
@@ -62,20 +62,20 @@ class HBNBCommand(cmd.Cmd):
         """Get help on commands."""
         help(self)
 
-def do_create(self, argument ):
+    def do_create(self, argument):
         """
         Creates a new class instance of BaseModel and prints its id.
         """
         cli_args = parse(argument)
         if len(cli_args) == 0:
             print("** class name missing **")
-        elif cli_args [0] not in HBNBCommand.__classes:
+        elif cli_args[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
             print(eval(cli_args[0])().id)
             storage.save()
 
-def do_show(self, argument):
+    def do_show(self, argument):
         """
         Outputs string representation of a class instance
         based on the class name and of id.
@@ -93,15 +93,15 @@ def do_show(self, argument):
         else:
             print(objdict["{}.{}".format(cli_args[0], cli_args[1])])
 
-def do_destroy(self, argument):
+    def do_destroy(self, argument):
         """ Deletes an instance based on the class name and id """
         cli_args = parse(argument)
         objdict = storage.all()
-        if len cli_args) == 0:
+        if len(cli_args) == 0:
             print("** class name missing **")
         elif cli_args[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
-        elif len cli_args) == 1:
+        elif len(cli_args) == 1:
             print("** instance id missing **")
         elif "{}.{}".format cli_arg[0], cli_args[1]) not in objdict.keys():
             print("** no instance found **")
@@ -109,61 +109,61 @@ def do_destroy(self, argument):
             del objdict["{}.{}".format cli_args[0], cli_args[1])]
             storage.save()
 
-def do_all(self, argument):
-        """Outputs the string representation of all instances
+    def do_all(self, argument):
+            """Outputs the string representation of all instances
             based or not on the class name
-        """
-        cli_args = parse(argument)
-        if len (cli_args) > 0 and cli_args[0] not in HBNBCommand.__classes:
+            """
+        cli_args=parse(argument)
+        if len(cli_args) > 0 and cli_args[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
             objl = []
             for obj in storage.all().values():
-                if len cli_args) > 0 and cli_args[0] == obj.__class__.__name__:
+                if len(cli_args) > 0 and cli_args[0] == obj.__class__.__name__:
                     objl.append(obj.__str__())
-                elif len cli_args) == 0:
+                elif len(cli_args) == 0:
                     objl.append(obj.__str__())
             print(objl)
 
-def do_count(self, argument):
+    def do_count(self, argument):
     """
     Gets the number of instances of a given class.
     """
-    cli_args = parse(argument)
-    count = 0
+        cli_args = parse(argument)
+        count = 0
         for obj in storage.all().values():
             if cli_args[0] == obj.__class__.__name__:
                 count += 1
         print(count)
 
-def do_update(self, argument):
+    def do_update(self, argument):
         """ Updates an instance based on the class name and id by adding or updating attribute"""
         cli_args = parse(arg)
         objdict = storage.all()
 
-        if len cli_arg) == 0:
+        if len(cli_arg) == 0:
             print("** class name missing **")
             return False
         if cli_args[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
             return False
-        if len cli_args) == 1:
+        if len(cli_args) == 1:
             print("** instance id missing **")
             return False
         if "{}.{}".format cli_args[0], cli_args[1]) not in objdict.keys():
             print("** no instance found **")
             return False
-        if len (cli_args) == 2:
+        if len(cli_args) == 2:
             print("** attribute name missing **")
             return False
-        if len cli_args) == 3:
+        if len(cli_args) == 3:
             try:
                 type(eval cli_args[2])) != dict
             except NameError:
                 print("** value missing **")
                 return False
 
-        if len cli_args) == 4:
+        if len(cli_args) == 4:
             obj = objdict["{}.{}".format cli_args[0], cli_args[1])]
             if cli_args[2] in obj.__class__.__dict__.keys():
                 valtype = type(obj.__class__.__dict__ cli_args[2]])
@@ -183,4 +183,3 @@ def do_update(self, argument):
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-
